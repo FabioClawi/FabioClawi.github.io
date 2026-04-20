@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabio R. Clavijo Wilkinson — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ─────────────────────────────────────────── */
+    :root {
+      --wine:   #7C2D3F;
+      --navy:   #1A2744;
+      --black:  #111111;
+      --dark:   #1A1A1A;
+      --mid:    #555555;
+      --muted:  #888888;
+      --border: #E0E0E0;
+      --bg:     #FAFAFA;
+      --white:  #FFFFFF;
+      --sidebar-w: 260px;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--dark);
+      background: var(--bg);
+    }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 28px;
+      z-index: 100;
+    }
+
+    .sidebar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .sidebar-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--wine);
+      margin-bottom: 36px;
+    }
+
+    /* Nav */
+    nav { flex: 1; }
+    nav ul { list-style: none; }
+    nav li + li { margin-top: 4px; }
+
+    nav a {
+      display: block;
+      padding: 7px 0;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--wine);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--white);
+    }
+
+    nav a:hover::before,
+    nav a.active::before {
+      width: 20px;
+    }
+
+    /* Contact */
+    .sidebar-contact {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid #2A2A2A;
+    }
+
+    .sidebar-contact p {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.9;
+      word-break: break-all;
+    }
+
+    .sidebar-contact a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sidebar-contact a:hover { color: var(--white); }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* ── Main Content ────────────────────────────────────────── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 64px 72px 96px;
+      max-width: 860px;
+    }
+
+    /* ── Sections ────────────────────────────────────────────── */
+    section {
+      margin-bottom: 72px;
+      scroll-margin-top: 40px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    #hero {
+      padding-top: 16px;
+      margin-bottom: 64px;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+
+    .hero-name span { color: var(--wine); }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      align-items: center;
+    }
+
+    .hero-meta a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .hero-meta a:hover { color: var(--wine); }
+
+    .hero-dot { color: var(--border); }
+
+    /* ── Profile ─────────────────────────────────────────────── */
+    .profile-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--dark);
+      max-width: 680px;
+    }
+
+    /* ── Experience ──────────────────────────────────────────── */
+    .job { margin-bottom: 44px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+
+    .job-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    .job-period {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    .job-company {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--wine);
+      margin-bottom: 14px;
+    }
+
+    .job-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .job-bullets li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--mid);
+    }
+
+    .job-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    /* ── Education ───────────────────────────────────────────── */
+    .edu-item { margin-bottom: 32px; }
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    .edu-school {
+      font-size: 12px;
+      color: var(--navy);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-top: 3px;
+    }
+
+    .edu-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .edu-period {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    /* Honors */
+    .honors-list {
+      list-style: none;
+      margin-top: 24px;
+      padding: 20px 24px;
+      background: var(--white);
+      border-left: 3px solid var(--navy);
+    }
+
+    .honors-list li {
+      padding: 5px 0;
+      font-size: 13px;
+      color: var(--mid);
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .honors-list li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      font-size: 8px;
+      top: 9px;
+      color: var(--navy);
+    }
+
+    /* ── Languages ───────────────────────────────────────────── */
+    .languages-grid {
+      display: flex;
+      gap: 40px;
+    }
+
+    .lang-item {}
+
+    .lang-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .lang-level {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .lang-bar {
+      width: 80px;
+      height: 2px;
+      background: var(--border);
+      margin-top: 6px;
+      position: relative;
+    }
+
+    .lang-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--wine);
+    }
+
+    /* ── Skills ─────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .skill-card {
+      border: 1px solid var(--border);
+      padding: 22px 18px 18px;
+      background: var(--white);
+      cursor: pointer;
+      transition: background 0.22s ease, border-color 0.22s ease;
+      position: relative;
+    }
+
+    .skill-card:hover {
+      border-color: var(--navy);
+    }
+
+    .skill-card.active {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .skill-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--wine);
+      margin-bottom: 10px;
+      transition: color 0.22s ease;
+    }
+
+    .skill-card.active .skill-num { color: rgba(255,255,255,0.4); }
+
+    .skill-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.3;
+      transition: color 0.22s ease;
+    }
+
+    .skill-card.active .skill-name { color: var(--white); }
+
+    .skill-card-arrow {
+      display: none;
+      position: absolute;
+      bottom: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 12px solid var(--navy);
+      z-index: 2;
+    }
+
+    .skill-card.active .skill-card-arrow { display: block; }
+
+    /* Detail panel */
+    .skills-detail {
+      display: none;
+      background: var(--navy);
+      padding: 28px 32px;
+      margin-top: 12px;
+    }
+
+    .skills-detail.visible { display: block; }
+
+    .skills-detail-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .skills-detail ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skills-detail li {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.8);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .skills-detail li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Courses ─────────────────────────────────────────────── */
+    .tag-honors    { background: #F6F0EE; color: #7C5230; }
+
+    .course-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--mid);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn .count {
+      background: var(--border);
+      color: var(--muted);
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    .filter-btn.active .count {
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+    }
+
+    .courses-grid {
+      display: grid;
+      gap: 0;
+    }
+
+    .course-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #EEEEEE;
+      transition: opacity 0.25s, max-height 0.3s;
+    }
+
+    .course-item:first-child { padding-top: 0; }
+    .course-item.hidden {
+      display: none;
+    }
+
+    .course-name {
+      font-size: 13.5px;
+      color: var(--dark);
+      font-weight: 400;
+    }
+
+    .course-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-left: 8px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .tag-finance   { background: #EEF0F6; color: var(--navy); }
+    .tag-data      { background: #F6EEEE; color: var(--wine); }
+    .tag-leadership{ background: #F0F6EE; color: #2D5A27; }
+
+    .course-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .course-issuer {
+      font-size: 11px;
+      color: var(--navy);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .course-date {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── Print ───────────────────────────────────────────────── */
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--mid);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .print-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ── Mobile menu toggle ─────────────────────────────────── */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 200;
+      background: var(--black);
+      border: none;
+      width: 40px; height: 40px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.35s ease;
+      }
+
+      .sidebar.open { transform: translateX(0); }
+
+      .menu-toggle { display: flex; }
+
+      .main {
+        margin-left: 0;
+        padding: 64px 28px 72px;
+      }
+
+      .hero-name { font-size: 40px; }
+      .languages-grid { gap: 24px; }
+    }
+
+    @media (max-width: 540px) {
+      .job-header, .edu-header { flex-direction: column; gap: 4px; }
+      .job-period, .edu-period { padding-top: 0; }
+      .hero-name { font-size: 32px; }
+      .course-item { flex-direction: column; gap: 2px; }
+      .course-meta { text-align: left; }
+    }
+
+    @media print {
+      .sidebar, .menu-toggle, .print-btn { display: none !important; }
+      .main { margin-left: 0; padding: 24px; max-width: 100%; }
+      .hero-name { font-size: 36px; }
+      section { margin-bottom: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile toggle -->
+<button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-name">Fabio R.<br>Clavijo Wilkinson</div>
+    <div class="sidebar-title">Finance &amp; Technology</div>
+    <div class="sidebar-divider"></div>
+
+    <nav>
+      <ul>
+        <li><a href="#profile"    class="nav-link">Profile</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#education"  class="nav-link">Education</a></li>
+        <li><a href="#languages"  class="nav-link">Languages</a></li>
+        <li><a href="#skills"     class="nav-link">Skills</a></li>
+        <li><a href="#courses"    class="nav-link">Courses</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-contact">
+      <div class="contact-label">Contact</div>
+      <p>
+        Mexico City, Mexico<br>
+        <a href="tel:+5244949898321">+52 449 499 8321</a><br>
+        <a href="mailto:fclavijowilkinsonnegocios@gmail.com">fclavijowilkinsonnegocios<br>@gmail.com</a><br><br>
+        <a href="https://www.linkedin.com/in/fabio-clavijo" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section id="hero">
+      <h1 class="hero-name">Fabio R.<br><span>Clavijo Wilkinson</span></h1>
+      <div class="hero-meta">
+        <span>Mexico City, Mexico</span>
+        <span class="hero-dot">·</span>
+        <a href="mailto:fclavijowilkinsonnegocios@gmail.com">fclavijowilkinsonnegocios@gmail.com</a>
+        <span class="hero-dot">·</span>
+        <a href="https://www.linkedin.com/in/fabio-clavijo" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Save PDF
+      </button>
+    </section>
+
+    <!-- Profile -->
+    <section id="profile">
+      <div class="section-label">Profile</div>
+      <p class="profile-text">
+        Finance and technology professional who builds at the intersection of financial systems, data engineering, and AI. I specialize in transforming complex financial operations — revenue forecasting, FP&A, and reporting — through automation, Python, and data-driven tooling. My background spans financial modeling and M&A due diligence to building pipelines and dashboards that eliminate manual processes at scale. I'm driven by one question: how can technology make financial decision-making faster, cleaner, and more precise?
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-label">Experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <h2 class="job-title">Global Supplier Senior Financial Analyst</h2>
+          <span class="job-period">Jan 2025 — Present</span>
+        </div>
+        <div class="job-company">American Express GBT &nbsp;·&nbsp; Mexico City</div>
+        <ul class="job-bullets">
+          <li>Own the end-to-end revenue accrual forecasting engine for 10K+ supplier contracts — building automated reconciliation logic that surfaces variances, reduces manual review cycles, and accelerates monthly close.</li>
+          <li>Lead finance process modernization by designing and deploying data pipelines, automated reporting workflows, and system integrations that replace spreadsheet-heavy operations with scalable, auditable infrastructure.</li>
+          <li>Build advanced financial and incentive models in Python and Excel, transforming raw multi-source data into executive-ready dashboards and narratives used by senior and regional leadership for strategic decisions.</li>
+          <li>Bridge FP&amp;A, Accounting, and Operations through shared data models and reporting standards — improving forecast accuracy, reducing reconciliation time, and creating a single source of truth across global teams.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h2 class="job-title">M&amp;A Junior Financial Analyst</h2>
+          <span class="job-period">Jun 2024 — Jan 2025</span>
+        </div>
+        <div class="job-company">Constellation Software &nbsp;·&nbsp; Mexico City</div>
+        <ul class="job-bullets">
+          <li>Conducted financial due diligence on software and vertical SaaS acquisition targets across Latin America — assessing ARR quality, churn dynamics, margin profiles, and technology moats to determine strategic fit.</li>
+          <li>Built DCF and comparable company valuation models for tech-sector targets, translating complex product and revenue mechanics into financial frameworks interpretable by investment committees.</li>
+          <li>Established direct outreach to founders and C-level executives, positioning Constellation's acquisition model as a value-creation path for niche software businesses in high-growth verticals.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h2 class="job-title">Finance &amp; Operations Intern</h2>
+          <span class="job-period">Sep 2023 — May 2024</span>
+        </div>
+        <div class="job-company">L'Óreal Groupe &nbsp;·&nbsp; Mexico City</div>
+        <ul class="job-bullets">
+          <li>Co-led software development projects end-to-end — defining requirements, coordinating engineering and finance teams, and delivering $100K+ data and tax-compliance tools on schedule across multidisciplinary squads.</li>
+          <li>Engineered purchase order and invoice tracking databases by integrating ERP and AP data sources into structured dashboards, giving project managers real-time visibility into cash flow and spend accuracy.</li>
+          <li>Designed an Excel-based project management system with automated reporting that cut resource misallocation by 15% and compressed timeline alignment cycles by 80% — later adopted as a team standard.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h2 class="job-title">Junior Consultant</h2>
+          <span class="job-period">Jun 2023 — Aug 2023</span>
+        </div>
+        <div class="job-company">Metrofinanciera &nbsp;·&nbsp; Mexico City</div>
+        <ul class="job-bullets">
+          <li>Modeled a $4M real estate investment project end-to-end — building a 10-year financial projection with scenario and sensitivity analyses to stress-test assumptions and quantify risk under different growth paths.</li>
+          <li>Synthesized quantitative findings into structured executive presentations, translating financial model outputs into clear investment narratives for senior decision-makers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-label">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-header">
+          <div>
+            <div class="edu-degree">Professional Certificate in Data Science, AI &amp; Business Analytics</div>
+            <div class="edu-school">Tecnológico de Monterrey</div>
+          </div>
+          <span class="edu-period">Feb 2026 — Present</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-header">
+          <div>
+            <div class="edu-degree">Bachelor of Business Administration</div>
+            <div class="edu-school">Universidad Panamericana</div>
+            <div class="edu-note">Magna Cum Laude &nbsp;·&nbsp; Best GPA of the class — 9.7/10</div>
+          </div>
+          <span class="edu-period">Jan 2020 — Dec 2024</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-header">
+          <div>
+            <div class="edu-degree">Bachelor of Finance</div>
+            <div class="edu-school">Universidad Panamericana</div>
+            <div class="edu-note">Magna Cum Laude &nbsp;·&nbsp; GPA 9.6/10</div>
+          </div>
+          <span class="edu-period">Jan 2020 — Jun 2024</span>
+        </div>
+      </div>
+
+      <ul class="honors-list">
+        <li>Best GPA of the class – Business Administration</li>
+        <li>Summa Cum Laude – Business Administration &amp; Finance</li>
+        <li>National CENEVAL Award for Outstanding Performance – EGEL / Premio Nacional CENEVAL al Desempeño de Excelencia EGEL</li>
+      </ul>
+    </section>
+
+    <!-- Languages -->
+    <section id="languages">
+      <div class="section-label">Languages</div>
+      <div class="languages-grid">
+        <div class="lang-item">
+          <div class="lang-name">Spanish</div>
+          <div class="lang-level">Native</div>
+          <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">Native</div>
+          <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Portuguese</div>
+          <div class="lang-level">Intermediate</div>
+          <div class="lang-bar"><div class="lang-bar-fill" style="width:55%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-label">Core Skills</div>
+      <div class="skills-grid">
+
+        <div class="skill-card" data-skill="0">
+          <div class="skill-num">01</div>
+          <div class="skill-name">Financial Modeling &amp; Analysis</div>
+          <div class="skill-card-arrow"></div>
+        </div>
+
+        <div class="skill-card" data-skill="1">
+          <div class="skill-num">02</div>
+          <div class="skill-name">Data Engineering &amp; Automation</div>
+          <div class="skill-card-arrow"></div>
+        </div>
+
+        <div class="skill-card" data-skill="2">
+          <div class="skill-num">03</div>
+          <div class="skill-name">Revenue Operations &amp; FP&amp;A</div>
+          <div class="skill-card-arrow"></div>
+        </div>
+
+        <div class="skill-card" data-skill="3">
+          <div class="skill-num">04</div>
+          <div class="skill-name">AI &amp; Advanced Analytics</div>
+          <div class="skill-card-arrow"></div>
+        </div>
+
+        <div class="skill-card" data-skill="4">
+          <div class="skill-num">05</div>
+          <div class="skill-name">M&amp;A &amp; Tech Valuation</div>
+          <div class="skill-card-arrow"></div>
+        </div>
+
+      </div>
+
+      <div class="skills-detail" id="skillsDetail">
+        <div class="skills-detail-title" id="skillsDetailTitle"></div>
+        <ul id="skillsDetailList"></ul>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses">
+      <div class="section-label">Courses &amp; Certifications</div>
+
+      <div class="course-filters">
+        <button class="filter-btn active" data-filter="all">All <span class="count">30</span></button>
+        <button class="filter-btn" data-filter="finance">Finance &amp; Valuation <span class="count">16</span></button>
+        <button class="filter-btn" data-filter="data">Data &amp; Technology <span class="count">10</span></button>
+        <button class="filter-btn" data-filter="leadership">Leadership &amp; Strategy <span class="count">3</span></button>
+        <button class="filter-btn" data-filter="honors">Honors <span class="count">1</span></button>
+      </div>
+
+      <div class="courses-grid">
+        <!-- 2026 -->
+        <div class="course-item" data-category="data">
+          <span class="course-name">Python Specialization Certificate <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">University of Michigan</div><div class="course-date">Mar 2026</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">Using Databases with Python <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">University of Michigan</div><div class="course-date">Mar 2026</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">Using Python to Access Web Data <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">University of Michigan</div><div class="course-date">Feb 2026</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">AI Python for Beginners <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">DeepLearning.AI</div><div class="course-date">Feb 2026</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">Python Data Structures <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">University of Michigan</div><div class="course-date">Feb 2026</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">Programming for Everybody <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">University of Michigan</div><div class="course-date">Jan 2026</div></div>
+        </div>
+        <!-- 2025 -->
+        <div class="course-item" data-category="honors">
+          <span class="course-name">Premio CENEVAL al Desempeño de Excelencia EGEL <span class="course-tag tag-honors">Honors</span></span>
+          <div class="course-meta"><div class="course-issuer">CENEVAL</div><div class="course-date">Dec 2025</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Zuora Revenue Recognition Badge <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Zuora University</div><div class="course-date">Dec 2025</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Introduction to Business Valuation <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Sep 2025</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Advanced 3-Statement Modeling <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Sep 2025</div></div>
+        </div>
+        <div class="course-item" data-category="leadership">
+          <span class="course-name">McKinsey.org Forward Program <span class="course-tag tag-leadership">Leadership</span></span>
+          <div class="course-meta"><div class="course-issuer">McKinsey &amp; Company</div><div class="course-date">Jul 2025</div></div>
+        </div>
+        <!-- 2024–2025 -->
+        <div class="course-item" data-category="data">
+          <span class="course-name">Analyzing and Visualizing Data with Microsoft Power BI <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">Udemy</div><div class="course-date">Jan 2025</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Analyzing Growth Drivers &amp; Business Risks <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Mar 2024</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">JPMorgan Chase &amp; Co. — Excel Skills Job Simulation <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Forage</div><div class="course-date">Jan 2024</div></div>
+        </div>
+        <!-- 2023 -->
+        <div class="course-item" data-category="data">
+          <span class="course-name">SAP Financials Essential Training <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">LinkedIn Learning</div><div class="course-date">Dec 2023</div></div>
+        </div>
+        <div class="course-item" data-category="data">
+          <span class="course-name">SAP ERP Essential Training <span class="course-tag tag-data">Data &amp; Tech</span></span>
+          <div class="course-meta"><div class="course-issuer">LinkedIn Learning</div><div class="course-date">Sep 2023</div></div>
+        </div>
+        <div class="course-item" data-category="leadership">
+          <span class="course-name">Agile Project Management Foundation <span class="course-tag tag-leadership">Leadership</span></span>
+          <div class="course-meta"><div class="course-issuer">IIBA</div><div class="course-date">Sep 2023</div></div>
+        </div>
+        <!-- 2022 -->
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Statistics Fundamentals <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Oct 2022</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Macabacus Fundamentals <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Oct 2022</div></div>
+        </div>
+        <!-- 2021 -->
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Introduction to Banking <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Dec 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Corporate Finance Fundamentals <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Dec 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Excel Fundamentals – Formulas for Finance <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Dec 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Reading Financial Statements <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Dec 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Accounting Fundamentals <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Corporate Finance Institute</div><div class="course-date">Nov 2021</div></div>
+        </div>
+        <div class="course-item" data-category="leadership">
+          <span class="course-name">Certified Public Speaker <span class="course-tag tag-leadership">Leadership</span></span>
+          <div class="course-meta"><div class="course-issuer">Dale Carnegie Training</div><div class="course-date">Nov 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Beginner to Pro in Excel: Financial Modelling &amp; Valuation <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">365 Careers</div><div class="course-date">Aug 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Advanced Diploma in Trading and Investment <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Austin Peay State University</div><div class="course-date">Jun 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Complete Financial Investment Course <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Upskillist</div><div class="course-date">Jun 2021</div></div>
+        </div>
+        <!-- 2020–2021 -->
+        <div class="course-item" data-category="finance">
+          <span class="course-name">The Complete Foundation Stock Trading Course <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">Udemy</div><div class="course-date">Jan 2021</div></div>
+        </div>
+        <div class="course-item" data-category="finance">
+          <span class="course-name">Running a Profitable Business: Understanding Cash Flow <span class="course-tag tag-finance">Finance</span></span>
+          <div class="course-meta"><div class="course-issuer">LinkedIn Learning</div><div class="course-date">Dec 2020</div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Skills click-to-reveal
+  const skillsData = [
+    {
+      title: 'Financial Modeling & Analysis',
+      bullets: [
+        'Built DCF, 3-statement, and incentive models actively used by senior leadership at AmEx GBT and Constellation Software for strategic and operational decisions.',
+        'Designed 10-year projections with full scenario and sensitivity analyses for a $4M investment project at Metrofinanciera, stress-testing assumptions across multiple growth paths.',
+        'Certified in Advanced 3-Statement Modeling, Introduction to Business Valuation, and Financial Modeling & Valuation Analyst (CFI).'
+      ]
+    },
+    {
+      title: 'Data Engineering & Automation',
+      bullets: [
+        'Designed automated data pipelines and reporting workflows at AmEx GBT that replaced spreadsheet-heavy manual processes with scalable, auditable infrastructure.',
+        'Engineered ERP-integrated databases at L\'Oréal connecting purchase order, invoice, and cash flow data sources — giving project managers real-time spend visibility.',
+        'Proficient in Python (University of Michigan specialization + DeepLearning.AI), SQL, and Power BI for building end-to-end data workflows and interactive dashboards.'
+      ]
+    },
+    {
+      title: 'Revenue Operations & FP&A',
+      bullets: [
+        'Owns the full revenue accrual forecasting engine for 10K+ supplier contracts at American Express GBT — surfacing variances, reducing manual review cycles, and accelerating monthly close.',
+        'Certified Revenue Recognition Professional (Zuora) with deep working knowledge of ASC 606 standards applied to complex, multi-source supplier agreements.',
+        'Partners with global FP&A, Accounting, and Operations teams to build shared data models and reporting standards that create a single source of truth across functions.'
+      ]
+    },
+    {
+      title: 'AI & Advanced Analytics',
+      bullets: [
+        'Currently pursuing a Professional Certificate in Data Science, AI & Business Analytics at Tecnológico de Monterrey — focused on applied ML for business decision-making.',
+        'Completed the full Python for Everybody Specialization (University of Michigan) and AI Python for Beginners (DeepLearning.AI), covering data structures, web scraping, databases, and AI tooling.',
+        'Applies AI-driven approaches to automate financial analysis, detect forecast anomalies, and build decision-support systems that replace slow, manual reporting cycles.'
+      ]
+    },
+    {
+      title: 'M&A & Technology Valuation',
+      bullets: [
+        'Evaluated vertical SaaS and software acquisition targets at Constellation Software — assessing ARR quality, churn dynamics, margin profiles, and technology moats to determine strategic fit.',
+        'Built DCF and comparable company valuation models for tech-sector targets, translating complex SaaS revenue mechanics into investment committee frameworks.',
+        'Established direct C-level outreach pipeline for Constellation\'s Latin American expansion, positioning the firm as a strategic partner for niche software founders.'
+      ]
+    }
+  ];
+
+  const skillCards = document.querySelectorAll('.skill-card');
+  const skillsDetail = document.getElementById('skillsDetail');
+  const skillsDetailTitle = document.getElementById('skillsDetailTitle');
+  const skillsDetailList = document.getElementById('skillsDetailList');
+
+  skillCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.skill);
+      const alreadyActive = card.classList.contains('active');
+
+      skillCards.forEach(c => c.classList.remove('active'));
+      skillsDetail.classList.remove('visible');
+
+      if (!alreadyActive) {
+        card.classList.add('active');
+        const data = skillsData[idx];
+        skillsDetailTitle.textContent = data.title;
+        skillsDetailList.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+        skillsDetail.classList.add('visible');
+        skillsDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+
+  // Course category filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.course-item').forEach(item => {
+        item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
+      });
+    });
+  });
+
+  // Mobile sidebar toggle
+  const toggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+
+  // Close sidebar when a nav link is clicked on mobile
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
