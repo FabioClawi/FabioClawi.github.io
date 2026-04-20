@@ -557,8 +557,13 @@
     }
 
     .courses-grid {
-      display: grid;
+      display: none;
       gap: 0;
+      margin-top: 4px;
+    }
+
+    .courses-grid.visible {
+      display: grid;
     }
 
     .course-item {
@@ -1258,16 +1263,39 @@
     });
   });
 
-  // Course category filters
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.course-item').forEach(item => {
-        item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
-      });
+  // Course category filters with auto-hide
+  const coursesGrid = document.querySelector('.courses-grid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  function closeCoursesGrid() {
+    coursesGrid.classList.remove('visible');
+    filterBtns.forEach(b => b.classList.remove('active'));
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const alreadyActive = btn.classList.contains('active');
+
+      closeCoursesGrid();
+
+      if (!alreadyActive) {
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.course-item').forEach(item => {
+          item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
+        });
+        coursesGrid.classList.add('visible');
+      }
     });
+  });
+
+  // Hide on click outside
+  document.addEventListener('click', (e) => {
+    const coursesSection = document.getElementById('courses');
+    if (!coursesSection.contains(e.target)) {
+      closeCoursesGrid();
+    }
   });
 
   // Mobile sidebar toggle
