@@ -924,7 +924,7 @@
         <span class="hero-dot">·</span>
         <a href="https://www.linkedin.com/in/fabio-cla-wi/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
-      <button class="print-btn" onclick="window.print()">
+      <button class="print-btn" onclick="printCV()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print / Save PDF
       </button>
@@ -1443,6 +1443,325 @@
       sidebar.classList.remove('open');
     });
   });
+
+  // ── PDF Print ────────────────────────────────────────────
+  function printCV() {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Fabio R. Clavijo Wilkinson — CV</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 10pt;
+      color: #111;
+      background: #fff;
+      padding: 18mm 20mm 16mm;
+      line-height: 1.55;
+    }
+    /* Header */
+    .cv-name {
+      text-align: center;
+      font-size: 20pt;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4pt;
+    }
+    .cv-tagline {
+      text-align: center;
+      font-size: 9.5pt;
+      color: #444;
+      margin-bottom: 5pt;
+    }
+    .cv-contact {
+      text-align: center;
+      font-size: 9pt;
+      color: #444;
+      margin-bottom: 14pt;
+    }
+    .cv-contact a { color: #444; text-decoration: none; }
+    /* Section */
+    .section { margin-bottom: 14pt; }
+    .section-title {
+      text-align: center;
+      font-size: 10pt;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-top: 1pt solid #111;
+      border-bottom: 1pt solid #111;
+      padding: 3pt 0;
+      margin-bottom: 10pt;
+    }
+    /* Experience */
+    .job { margin-bottom: 10pt; page-break-inside: avoid; }
+    .job-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .job-company { font-weight: bold; font-size: 10.5pt; }
+    .job-location { font-size: 9pt; color: #444; }
+    .job-title-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4pt;
+    }
+    .job-title { font-style: italic; font-size: 10pt; }
+    .job-dates { font-size: 9pt; color: #444; }
+    .job-desc { font-size: 9.5pt; color: #333; margin-bottom: 4pt; }
+    ul.bullets { padding-left: 16pt; margin-top: 3pt; }
+    ul.bullets li { margin-bottom: 3pt; font-size: 9.5pt; line-height: 1.5; }
+    /* Education */
+    .edu-item { margin-bottom: 8pt; page-break-inside: avoid; }
+    .edu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .edu-school { font-weight: bold; font-size: 10pt; }
+    .edu-location { font-size: 9pt; color: #444; }
+    .edu-degree { font-style: italic; font-size: 9.5pt; }
+    .edu-dates { font-size: 9pt; color: #444; }
+    .edu-note { font-size: 9pt; color: #555; margin-top: 1pt; }
+    /* Skills */
+    .skill-block { margin-bottom: 8pt; page-break-inside: avoid; }
+    .skill-block-title { font-weight: bold; font-size: 10pt; margin-bottom: 3pt; }
+    /* Courses */
+    .course-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5pt;
+      padding: 3pt 0;
+      border-bottom: 0.5pt solid #ddd;
+    }
+    .course-row:last-child { border-bottom: none; }
+    .course-issuer { color: #555; font-style: italic; }
+    /* Languages */
+    .lang-row { font-size: 9.5pt; }
+    .lang-row span { margin-right: 24pt; }
+    /* Honors */
+    ul.honors { padding-left: 16pt; }
+    ul.honors li { font-size: 9.5pt; margin-bottom: 3pt; }
+    @page { margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="cv-name">Fabio R. Clavijo Wilkinson</div>
+  <div class="cv-tagline">Finance &amp; Technology</div>
+  <div class="cv-contact">
+    Mexico City, Mexico &nbsp;|&nbsp;
+    <a href="https://wa.me/524494998321">+52 449 499 8321</a> &nbsp;|&nbsp;
+    fclavijowilkinsonnegocios@gmail.com &nbsp;|&nbsp;
+    linkedin.com/in/fabio-cla-wi
+  </div>
+
+  <!-- Profile -->
+  <div class="section">
+    <div class="section-title">Profile</div>
+    <p style="font-size:9.5pt;line-height:1.6;">Finance and technology professional who builds at the intersection of financial systems, data engineering, and AI. I specialize in transforming complex financial operations — revenue forecasting, FP&amp;A, and reporting — through automation, Python, and data-driven tooling. My background spans financial modeling and M&amp;A due diligence to building pipelines and dashboards that eliminate manual processes at scale. I'm driven by one question: how can technology make financial decision-making faster, cleaner, and more precise?</p>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">American Express GBT</span>
+        <span class="job-location">Mexico City</span>
+      </div>
+      <div class="job-title-line">
+        <span class="job-title">Global Supplier Senior Financial Analyst</span>
+        <span class="job-dates">Jan 2025 — Present</span>
+      </div>
+      <ul class="bullets">
+        <li>Own the end-to-end revenue accrual forecasting engine for 10K+ supplier contracts — building automated reconciliation logic that surfaces variances, reduces manual review cycles, and accelerates monthly close.</li>
+        <li>Lead finance process modernization by designing and deploying data pipelines, automated reporting workflows, and system integrations that replace spreadsheet-heavy operations with scalable, auditable infrastructure.</li>
+        <li>Build advanced financial and incentive models in Python and Excel, transforming raw multi-source data into executive-ready dashboards and narratives used by senior and regional leadership for strategic decisions.</li>
+        <li>Bridge FP&amp;A, Accounting, and Operations through shared data models and reporting standards — improving forecast accuracy, reducing reconciliation time, and creating a single source of truth across global teams.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Constellation Software</span>
+        <span class="job-location">Mexico City</span>
+      </div>
+      <div class="job-title-line">
+        <span class="job-title">M&amp;A Junior Financial Analyst</span>
+        <span class="job-dates">Jun 2024 — Jan 2025</span>
+      </div>
+      <ul class="bullets">
+        <li>Conducted financial due diligence on software and vertical SaaS acquisition targets across Latin America — assessing ARR quality, churn dynamics, margin profiles, and technology moats to determine strategic fit.</li>
+        <li>Built DCF and comparable company valuation models for tech-sector targets, translating complex product and revenue mechanics into financial frameworks interpretable by investment committees.</li>
+        <li>Established direct outreach to founders and C-level executives, positioning Constellation's acquisition model as a value-creation path for niche software businesses in high-growth verticals.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">L'Oréal Groupe</span>
+        <span class="job-location">Mexico City</span>
+      </div>
+      <div class="job-title-line">
+        <span class="job-title">Finance &amp; Operations Intern</span>
+        <span class="job-dates">Sep 2023 — May 2024</span>
+      </div>
+      <ul class="bullets">
+        <li>Co-led software development projects end-to-end — defining requirements, coordinating engineering and finance teams, and delivering $100K+ data and tax-compliance tools on schedule.</li>
+        <li>Engineered purchase order and invoice tracking databases by integrating ERP and AP data sources into structured dashboards, giving project managers real-time visibility into cash flow and spend accuracy.</li>
+        <li>Designed an Excel-based project management system with automated reporting that cut resource misallocation by 15% and compressed timeline alignment cycles by 80% — later adopted as a team standard.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Metrofinanciera</span>
+        <span class="job-location">Mexico City</span>
+      </div>
+      <div class="job-title-line">
+        <span class="job-title">Junior Consultant</span>
+        <span class="job-dates">Jun 2023 — Aug 2023</span>
+      </div>
+      <ul class="bullets">
+        <li>Modeled a $4M real estate investment project end-to-end — building a 10-year financial projection with scenario and sensitivity analyses to stress-test assumptions and quantify risk under different growth paths.</li>
+        <li>Synthesized quantitative findings into structured executive presentations, translating financial model outputs into clear investment narratives for senior decision-makers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <span class="edu-school">Tecnológico de Monterrey</span>
+        <span class="edu-location">Mexico City</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span class="edu-degree">Professional Certificate in Data Science, AI &amp; Business Analytics</span>
+        <span class="edu-dates">Feb 2026 — Present</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <span class="edu-school">Universidad Panamericana</span>
+        <span class="edu-location">Mexico City</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span class="edu-degree">Bachelor of Business Administration</span>
+        <span class="edu-dates">Jan 2020 — Dec 2024</span>
+      </div>
+      <div class="edu-note">Magna Cum Laude · Best GPA of the class — 9.7/10</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <span class="edu-school">Universidad Panamericana</span>
+        <span class="edu-location">Mexico City</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span class="edu-degree">Bachelor of Finance</span>
+        <span class="edu-dates">Jan 2020 — Jun 2024</span>
+      </div>
+      <div class="edu-note">Magna Cum Laude · GPA 9.6/10</div>
+    </div>
+
+    <ul class="honors" style="margin-top:8pt;">
+      <li>Best GPA of the class – Business Administration</li>
+      <li>Summa Cum Laude – Business Administration &amp; Finance</li>
+      <li>National CENEVAL Award for Outstanding Performance – EGEL</li>
+    </ul>
+  </div>
+
+  <!-- Core Skills -->
+  <div class="section">
+    <div class="section-title">Core Skills</div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Financial Modeling &amp; Analysis</div>
+      <ul class="bullets">
+        <li>Built DCF, 3-statement, and incentive models actively used by senior leadership at AmEx GBT and Constellation Software for strategic and operational decisions.</li>
+        <li>Designed 10-year projections with full scenario and sensitivity analyses for a $4M investment project at Metrofinanciera, stress-testing assumptions across multiple growth paths.</li>
+        <li>Certified in Advanced 3-Statement Modeling, Introduction to Business Valuation, and Financial Modeling &amp; Valuation Analyst (CFI).</li>
+      </ul>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Data Engineering &amp; Automation</div>
+      <ul class="bullets">
+        <li>Designed automated data pipelines and reporting workflows at AmEx GBT that replaced spreadsheet-heavy manual processes with scalable, auditable infrastructure.</li>
+        <li>Engineered ERP-integrated databases at L'Oréal connecting purchase order, invoice, and cash flow data sources — giving project managers real-time spend visibility.</li>
+        <li>Proficient in Python (University of Michigan specialization + DeepLearning.AI), SQL, and Power BI for building end-to-end data workflows and interactive dashboards.</li>
+      </ul>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">Revenue Operations &amp; FP&amp;A</div>
+      <ul class="bullets">
+        <li>Owns the full revenue accrual forecasting engine for 10K+ supplier contracts at American Express GBT — surfacing variances, reducing manual review cycles, and accelerating monthly close.</li>
+        <li>Certified Revenue Recognition Professional (Zuora) with deep working knowledge of ASC 606 standards applied to complex, multi-source supplier agreements.</li>
+        <li>Partners with global FP&amp;A, Accounting, and Operations teams to build shared data models and reporting standards that create a single source of truth across functions.</li>
+      </ul>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">AI &amp; Advanced Analytics</div>
+      <ul class="bullets">
+        <li>Currently pursuing a Professional Certificate in Data Science, AI &amp; Business Analytics at Tecnológico de Monterrey — focused on applied ML for business decision-making.</li>
+        <li>Completed the full Python for Everybody Specialization (University of Michigan) and AI Python for Beginners (DeepLearning.AI), covering data structures, web scraping, databases, and AI tooling.</li>
+        <li>Applies AI-driven approaches to automate financial analysis, detect forecast anomalies, and build decision-support systems that replace slow, manual reporting cycles.</li>
+      </ul>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-block-title">M&amp;A &amp; Technology Valuation</div>
+      <ul class="bullets">
+        <li>Evaluated vertical SaaS and software acquisition targets at Constellation Software — assessing ARR quality, churn dynamics, margin profiles, and technology moats to determine strategic fit.</li>
+        <li>Built DCF and comparable company valuation models for tech-sector targets, translating complex SaaS revenue mechanics into investment committee frameworks.</li>
+        <li>Established direct C-level outreach pipeline for Constellation's Latin American expansion, positioning the firm as a strategic partner for niche software founders.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Courses & Certifications (5 most recent) -->
+  <div class="section">
+    <div class="section-title">Courses &amp; Certifications (Recent)</div>
+    <div class="course-row"><span>Python Specialization Certificate</span><span class="course-issuer">University of Michigan · Mar 2026</span></div>
+    <div class="course-row"><span>Using Databases with Python</span><span class="course-issuer">University of Michigan · Mar 2026</span></div>
+    <div class="course-row"><span>Using Python to Access Web Data</span><span class="course-issuer">University of Michigan · Feb 2026</span></div>
+    <div class="course-row"><span>AI Python for Beginners</span><span class="course-issuer">DeepLearning.AI · Feb 2026</span></div>
+    <div class="course-row"><span>Python Data Structures</span><span class="course-issuer">University of Michigan · Feb 2026</span></div>
+  </div>
+
+  <!-- Languages -->
+  <div class="section">
+    <div class="section-title">Languages</div>
+    <div class="lang-row">
+      <span><strong>Spanish</strong> — Native</span>
+      <span><strong>English</strong> — Native</span>
+      <span><strong>Portuguese</strong> — Intermediate</span>
+    </div>
+  </div>
+
+</body>
+</html>`;
+
+    const win = window.open('', '_blank', 'width=900,height=700');
+    win.document.write(html);
+    win.document.close();
+    win.focus();
+    setTimeout(() => win.print(), 600);
+  }
 </script>
 </body>
 </html>
