@@ -626,25 +626,25 @@
     .print-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       margin-top: 28px;
-      padding: 10px 20px;
-      border: 1px solid var(--border);
+      padding: 11px 24px;
+      border: 1px solid var(--wine);
       background: transparent;
-      color: var(--mid);
+      color: var(--wine);
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.22s;
     }
 
     .print-btn:hover {
-      background: var(--black);
+      background: var(--wine);
       color: var(--white);
-      border-color: var(--black);
+      border-color: var(--wine);
     }
 
     /* ── Mobile menu toggle ─────────────────────────────────── */
@@ -696,6 +696,75 @@
       .hero-name { font-size: 32px; }
       .course-item { flex-direction: column; gap: 2px; }
       .course-meta { text-align: left; }
+    }
+
+    /* ── Animations ─────────────────────────────────────────── */
+
+    /* Hero entrance */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-name {
+      animation: heroFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero-meta {
+      animation: heroFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+    }
+
+    .print-btn {
+      animation: heroFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+    }
+
+    /* Scroll-triggered fade-up */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Section label line draw */
+    .section-label {
+      position: relative;
+      border-bottom: none;
+    }
+
+    .section-label::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 1px;
+      width: 0;
+      background: var(--border);
+      transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .section-label.line-visible::after {
+      width: 100%;
+    }
+
+    /* Skill card lift on hover */
+    .skill-card {
+      transition: background 0.22s ease, border-color 0.22s ease,
+                  transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(26, 39, 68, 0.10);
+    }
+
+    .skill-card.active {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(26, 39, 68, 0.18);
     }
 
     @media print {
@@ -848,6 +917,8 @@
       <h1 class="hero-name">Fabio R.<br><span>Clavijo Wilkinson</span></h1>
       <div class="hero-meta">
         <span>Mexico City, Mexico</span>
+        <span class="hero-dot">·</span>
+        <a href="https://wa.me/524494998321" target="_blank" rel="noopener">+52 449 499 8321</a>
         <span class="hero-dot">·</span>
         <a href="mailto:fclavijowilkinsonnegocios@gmail.com">fclavijowilkinsonnegocios@gmail.com</a>
         <span class="hero-dot">·</span>
@@ -1179,6 +1250,66 @@
 </div>
 
 <script>
+  // Scroll-reveal animations
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // Section labels — line draw
+  const labelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('line-visible');
+        labelObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // Apply reveal to section labels
+  document.querySelectorAll('.section-label').forEach(el => labelObserver.observe(el));
+
+  // Apply staggered reveal to jobs, edu items, skill cards, lang items, profile text
+  document.querySelectorAll('.profile-text').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  document.querySelectorAll('.job').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.dataset.delay = i * 80;
+    revealObserver.observe(el);
+  });
+
+  document.querySelectorAll('.edu-item').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.dataset.delay = i * 80;
+    revealObserver.observe(el);
+  });
+
+  document.querySelectorAll('.honors-list').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  document.querySelectorAll('.lang-item').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.dataset.delay = i * 100;
+    revealObserver.observe(el);
+  });
+
+  document.querySelectorAll('.skill-card').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.dataset.delay = i * 60;
+    revealObserver.observe(el);
+  });
+
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
