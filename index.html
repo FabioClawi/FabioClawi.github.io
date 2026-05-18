@@ -653,7 +653,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      animation: printAttention 2s ease-in-out infinite;
     }
 
     .print-btn:hover {
@@ -732,7 +731,8 @@
     }
 
     .print-btn {
-      animation: heroFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+      animation: heroFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both,
+                 printAttention 2s ease-in-out 1.2s infinite;
     }
 
     /* Scroll-triggered fade-up */
