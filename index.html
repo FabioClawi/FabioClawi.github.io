@@ -767,108 +767,145 @@
       box-shadow: 0 6px 20px rgba(26, 39, 68, 0.18);
     }
 
-    @media print {
-      /* ── Hide screen-only elements ── */
-      .sidebar, .menu-toggle, .print-btn,
-      #courses, .skills-detail, .skill-card-arrow { display: none !important; }
+    @page { size: A4; margin: 11mm 14mm; }
 
-      /* ── Reset layout ── */
-      * { box-sizing: border-box; }
-      html, body { margin: 0; padding: 0; background: #fff; color: #111; }
+    @media print {
+      /* ── Kill all animations / reveals ── */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* ── Hide everything not needed ── */
+      .sidebar, .menu-toggle, .print-btn,
+      #courses, #skills, #hero ~ section:not(#profile):not(#experience):not(#education):not(#languages),
+      .skills-detail, .skill-card-arrow,
+      .honors-list, .lang-bar,
+      .section-label::after { display: none !important; }
+
+      /* ── Base reset ── */
+      html, body { margin: 0; padding: 0; background: #fff; color: #000; font-size: 9pt; line-height: 1.45; }
       .layout { display: block; }
-      .main {
-        margin-left: 0;
-        padding: 18mm 16mm 14mm;
+      .main { margin-left: 0; padding: 0; max-width: 100%; }
+      section { margin-bottom: 9pt; scroll-margin-top: 0; }
+
+      /* ── HEADER — centered, compact ── */
+      #hero { text-align: center; margin-bottom: 10pt; padding-top: 0; }
+
+      .hero-name {
+        font-family: 'Inter', sans-serif;
+        font-size: 20pt;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #000;
+        line-height: 1.1;
+        margin-bottom: 4pt;
+      }
+      .hero-name span { color: #000; }
+
+      .hero-meta {
+        font-size: 8pt;
+        color: #222;
+        justify-content: center;
+        gap: 3px 10px;
+        flex-wrap: wrap;
+      }
+      .hero-meta a { color: #222; text-decoration: none; }
+      .hero-dot { color: #aaa; }
+
+      /* ── SECTION LABELS ── */
+      .section-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 7.5pt;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #000;
+        border-bottom: 0.75pt solid #000;
+        padding-bottom: 2pt;
+        margin-bottom: 7pt;
+        position: static;
+      }
+
+      /* ── PROFILE ── */
+      #profile { margin-bottom: 9pt; }
+      .profile-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 8.5pt;
+        line-height: 1.5;
+        color: #111;
         max-width: 100%;
       }
 
-      /* ── Typography ── */
-      body { font-family: 'Inter', sans-serif; font-size: 9.5pt; line-height: 1.55; }
+      /* ── EXPERIENCE ── */
+      .job { margin-bottom: 7pt; page-break-inside: avoid; }
 
-      /* ── Hero ── */
-      #hero { margin-bottom: 18pt; padding-top: 0; }
-      .hero-name {
-        font-size: 28pt;
-        font-weight: 300;
-        line-height: 1.05;
-        margin-bottom: 6pt;
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0;
       }
-      .hero-meta {
-        font-size: 8.5pt;
+      .job-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 9.5pt;
+        font-weight: 700;
+        color: #000;
+        font-style: normal;
+      }
+      .job-period {
+        font-size: 8pt;
         color: #444;
-        gap: 4px 14px;
-        flex-wrap: wrap;
+        white-space: nowrap;
       }
-      .hero-meta a { color: #444; text-decoration: none; }
-      .hero-dot { color: #ccc; }
-
-      /* ── Sections ── */
-      section { margin-bottom: 18pt; page-break-inside: avoid; scroll-margin-top: 0; }
-      .section-label {
-        font-size: 7.5pt;
-        letter-spacing: 0.18em;
-        color: #1A2744;
-        border-bottom: 0.75pt solid #ddd;
-        padding-bottom: 4pt;
-        margin-bottom: 12pt;
-      }
-
-      /* ── Profile ── */
-      .profile-text { font-size: 10pt; line-height: 1.65; color: #222; }
-
-      /* ── Experience ── */
-      .job { margin-bottom: 14pt; page-break-inside: avoid; }
-      .job-header { margin-bottom: 1pt; }
-      .job-title { font-size: 12pt; font-weight: 500; }
-      .job-period { font-size: 8pt; color: #777; }
-      .job-company { font-size: 8pt; color: #7C2D3F; margin-bottom: 6pt; letter-spacing: 0.06em; }
-      .job-bullets li {
-        font-size: 9pt;
+      .job-company {
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        font-weight: 500;
         color: #333;
-        margin-bottom: 4pt;
-        padding-left: 14px;
-        line-height: 1.5;
+        letter-spacing: 0;
+        text-transform: none;
+        margin-bottom: 3pt;
       }
-      .job-bullets li::before { background: #7C2D3F; }
+      .job-bullets { padding: 0; list-style: disc; padding-left: 13px; }
+      .job-bullets li {
+        font-size: 8pt;
+        color: #111;
+        margin-bottom: 1.5pt;
+        padding-left: 2px;
+        line-height: 1.4;
+        list-style-type: disc;
+      }
+      .job-bullets li::before { display: none; }
 
-      /* ── Education ── */
-      .edu-item { margin-bottom: 10pt; page-break-inside: avoid; }
-      .edu-degree { font-size: 11pt; }
-      .edu-school { font-size: 8.5pt; color: #1A2744; }
-      .edu-note { font-size: 8pt; color: #666; }
-      .edu-period { font-size: 8pt; color: #888; }
-      .honors-list {
-        margin-top: 10pt;
-        padding: 10pt 14pt;
-        border-left: 2pt solid #1A2744;
-        background: none;
+      /* ── EDUCATION ── */
+      .edu-item { margin-bottom: 6pt; page-break-inside: avoid; }
+      .edu-header { display: flex; justify-content: space-between; align-items: flex-start; }
+      .edu-degree {
+        font-family: 'Inter', sans-serif;
+        font-size: 9pt;
+        font-weight: 600;
+        color: #000;
       }
-      .honors-list li { font-size: 8.5pt; color: #333; padding: 3pt 0 3pt 14px; }
-      .honors-list li::before { color: #1A2744; }
+      .edu-school {
+        font-size: 8pt;
+        font-weight: 400;
+        color: #333;
+        margin-top: 1pt;
+        letter-spacing: 0;
+      }
+      .edu-note { font-size: 7.5pt; color: #555; margin-top: 1pt; }
+      .edu-period { font-size: 8pt; color: #444; }
 
-      /* ── Languages ── */
-      .languages-grid { gap: 28px; }
-      .lang-name { font-size: 10pt; }
-      .lang-level { font-size: 7.5pt; }
-      .lang-bar { width: 56px; }
-
-      /* ── Skills ── */
-      .skills-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 8pt;
-      }
-      .skill-card {
-        border: 0.5pt solid #ddd;
-        padding: 10pt 10pt 8pt;
-        background: #fff;
-        cursor: default;
-        page-break-inside: avoid;
-      }
-      .skill-card.active { background: #fff; border-color: #ddd; }
-      .skill-card.active .skill-name { color: #111; }
-      .skill-card.active .skill-num { color: #7C2D3F; }
-      .skill-num { font-size: 7.5pt; color: #7C2D3F; margin-bottom: 4pt; }
-      .skill-name { font-size: 8.5pt; font-weight: 600; color: #111; }
+      /* ── LANGUAGES ── */
+      #languages { margin-bottom: 0; }
+      .languages-grid { display: flex; gap: 24pt; flex-wrap: wrap; }
+      .lang-item { display: flex; align-items: baseline; gap: 4pt; }
+      .lang-name { font-size: 8.5pt; font-weight: 600; color: #000; }
+      .lang-level { font-size: 8pt; color: #444; }
+      .lang-level::before { content: "— "; }
     }
   </style>
 </head>
