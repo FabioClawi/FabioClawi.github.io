@@ -623,6 +623,12 @@
     }
 
     /* ── Print ───────────────────────────────────────────────── */
+    @keyframes printPing {
+      0%   { box-shadow: 0 0 0 0px rgba(92, 26, 40, 0.45); }
+      60%  { box-shadow: 0 0 0 10px rgba(92, 26, 40, 0); }
+      100% { box-shadow: 0 0 0 10px rgba(92, 26, 40, 0); }
+    }
+
     .print-btn {
       display: inline-flex;
       align-items: center;
@@ -638,10 +644,12 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.22s;
+      transition: background 0.22s, color 0.22s, border-color 0.22s;
+      animation: printPing 2.8s ease-out infinite;
     }
 
     .print-btn:hover {
+      animation: none;
       background: var(--wine);
       color: var(--white);
       border-color: var(--wine);
